@@ -1,4 +1,67 @@
-# jscodeshift-typescript-example
+# jscodeshift
+
+This repository contains JSCodeShift templates that can be used for mass migration or verification in JS/TS.
+
+## Installation
+
+```shell
+yarn install
+```
+
+## Run codemod
+This run will change files and save them.
+```shell
+yarn run jscodeshift \
+  -t transforms/try-catch.ts \
+  ./../packhelp/landing/**/*.ts \
+  --extensions=ts \
+  --parser=ts \
+  --ignore-pattern=./../**/node_modules/** \
+  --print
+```
+> _Omit `--print` to avoid terminal spam._
+> _Omit `--dry` to write the transformed source back to disk._
+
+
+### Debug dry run:
+This run only prints changes to terminal.
+```shell
+yarn run jscodeshift \
+  -t transforms/try-catch.ts \
+  ./../packhelp/landing/**/*.ts \
+  --extensions=ts \
+  --parser=ts \
+  --ignore-pattern=./../**/node_modules/** \
+  --print \
+  --dry
+```
+
+
+## How to speed up templates creation
+
+Use `@babel/parser` in [https://astexplorer.net](https://astexplorer.net) when working with the jscodeshift's [default parser](https://github.com/facebook/jscodeshift#usage-cli) (default: `babel`).
+
+![ast explorer](docs/ast-explorer.png)
+
+--------------
+
+## Test
+```shell
+yarn test
+```
+
+## Debug
+
+Use the [pre-configured VSCode launcher](.vscode/launch.json) to run tests and debug your transformer.
+
+![debugger](docs/debugger.gif)
+
+## Resources & Inspiration
+
+- https://github.com/facebook/jscodeshift/tree/master/sample
+- https://github.com/facebook/jscodeshift/blob/master/recipes/retain-first-comment.md
+- https://github.com/elliottsj/jscodeshift-typescript-example
+- https://astexplorer.net
 
 ## TypeScript all the way 🚀
 
@@ -13,53 +76,4 @@ Example usage of [jscodeshift](https://github.com/facebook/jscodeshift) _for_ Ty
 
 Strongly typed code and code completion with `@types/jscodeshift`
 
-![code-completion](https://raw.githubusercontent.com/chimurai/jscodeshift-typescript-example/main/docs/code-completion.gif)
-
-## Installation
-
-```shell
-npm i
-```
-
-or
-
-```shell
-yarn
-```
-
-## Run codemod
-
-```shell
-npx jscodeshift -t ./examples/simple-rename.ts --extensions=ts --parser=ts './**/*.ts' --print --dry
-```
-
-> _Omit `--dry` to write the transformed source back to disk._
-
-## Test
-
-```shell
-npm test
-```
-
-or
-
-```shell
-yarn test
-```
-
-## Debug
-
-Use the [pre-configured VSCode launcher](https://github.com/chimurai/jscodeshift-typescript-example/blob/main/.vscode/launch.json) to run tests and debug your transformer.
-
-![debugger](https://raw.githubusercontent.com/chimurai/jscodeshift-typescript-example/main/docs/debugger.gif)
-
-## Behind the scenes
-
-Use `@babel/parser` in [https://astexplorer.net](https://astexplorer.net) when working with the jscodeshift's [default parser](https://github.com/facebook/jscodeshift#usage-cli) (default: `babel`).
-
-## Resources & Inspiration
-
-- https://github.com/facebook/jscodeshift/tree/master/sample
-- https://github.com/facebook/jscodeshift/blob/master/recipes/retain-first-comment.md
-- https://github.com/elliottsj/jscodeshift-typescript-example
-- https://astexplorer.net
+![code-completion](docs/code-completion.gif)
