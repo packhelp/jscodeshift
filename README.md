@@ -2,6 +2,20 @@
 
 This repository contains JSCodeShift templates that can be used for mass migration or verification in JS/TS.
 
+For example, you can transform code like that:
+```js
+// --- Input code
+try {} catch {}
+
+// --- Output code
+try {}
+catch (e) {
+  // ⚠️ Added missing catch param identifier
+  // ⚠️ Added missing throw
+  throw e
+}
+```
+
 ## Installation
 
 ```shell
