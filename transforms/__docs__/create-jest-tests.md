@@ -1,11 +1,11 @@
-### `create-jest-tests`
+# `create-jest-tests`
 
 Creates Jest file with tests to code provided in input file.
 
-#### Example
+### Example
 
+#### Before
 ```js
-// BEFORE:
 import * as bloopy from 'mod1';
 
 export const foo = () => 'fn-foo';
@@ -27,9 +27,9 @@ module.exports.foobar5 = () => 'fn-foobar5';
 exports.plainObject = 42;
 
 module.exports = { wow: 5 };
-
-
-// AFTER:
+```
+#### After
+```js
 /* eslint-env jest */
 'use strict';
 

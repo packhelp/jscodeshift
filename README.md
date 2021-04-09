@@ -16,6 +16,8 @@ catch (e) {
 }
 ```
 
+Not impressed? Understandable :) but don't quit yet, and check for example this one ([create tests to implemented code](transforms/__docs__/create-jest-tests.md))
+
 ## Installation
 
 ```shell
@@ -98,6 +100,9 @@ Use the [pre-configured VSCode launcher](.vscode/launch.json) to run tests and d
 - https://www.raymondluong.com/blog/refactoring-javascript-with-codemods/
 - https://github.com/civicsource/codemod
 - https://github.com/shopify-graveyard/shopify-codemod
+- https://github.com/albinekb/co-to-async
+- https://github.com/jurassix/refactoring-codemods
+- https://github.com/vivek12345/async-await-codemod
 
 ## Resources & Inspiration
 

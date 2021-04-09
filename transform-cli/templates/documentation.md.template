@@ -1,14 +1,15 @@
-### `__DASHERIZED_NAME__`
+## `__DASHERIZED_NAME__`
 
 Description of transform. (CHANGE THIS)
 
-#### Example
-
+### Example
+#### Before
 ```js
-// BEFORE:
 EXAMPLE INPUT CODE (️CHANGE THIS)
+```
 
-// AFTER:
+#### After
+```js
 EXAMPLE OUTPUT CODE (️CHANGE THIS)
 ```
 
