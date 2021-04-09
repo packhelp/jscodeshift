@@ -22,6 +22,19 @@ catch (e) {
 yarn install
 ```
 
+## Creating new transform/migration
+This helper command will:
+- Create new migration/transform file with given name
+- Add docs
+- Add tests
+- Add test input and output files
+
+Replace `new-migration-script-name` with for example `reverse-params`
+
+```shell
+yarn make new-migration-script-name
+```
+
 ## Run codemod
 This run will change files and save them.
 ```shell

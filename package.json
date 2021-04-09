@@ -5,7 +5,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "make": "node ./bin/create-transform"
   },
   "dependencies": {
     "jscodeshift": "^0.11.0"

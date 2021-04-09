@@ -1,0 +1,8 @@
+import { defineTest } from 'jscodeshift/src/testUtils';
+
+// IMPORTANT:
+// Nesting "it" in "describe" is forbidden
+
+describe("__DASHERIZED_NAME__", () => {
+  defineTest(__dirname, './__DASHERIZED_NAME__', null, '__DASHERIZED_NAME__/basic', { parser: 'ts' });
+});

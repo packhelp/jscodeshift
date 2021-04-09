@@ -1,0 +1,25 @@
+import {API, FileInfo} from 'jscodeshift';
+import {ASTPath, JSCodeshift, CatchClause} from "jscodeshift/src/core";
+
+function addCommentToNode(codeApi: JSCodeshift, node, text: string) {
+  const comment = codeApi.commentLine(text, true, false);
+  const comments = node.node.comments = node.node.comments || [];
+  comments.push(comment);
+}
+
+export default function someNewTransform(file: FileInfo, api: API) {
+  const codeApi: JSCodeshift = api.jscodeshift
+  const root = codeApi(file.source)
+
+  const updatedAnything = root                           // In root
+    .find(codeApi.CatchClause)                           // find all "catch {}"
+    .forEach((catchClause: ASTPath<CatchClause>) => {    // for each found
+      return addCommentToNode(                           // add comment above
+        codeApi,
+        catchClause,
+        'Found catch! :)'
+      )
+    })
+
+  return updatedAnything ? root.toSource() : null;
+}
