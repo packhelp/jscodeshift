@@ -52,14 +52,15 @@ function assertNotUsedCatchParamInThrowStatement(codeApi: JSCodeshift, catchClau
 
 export default function transformer(file: FileInfo, api: API) {
   const codeApi = api.jscodeshift
-  const fileSourceCode = codeApi(file.source)
+  const root = codeApi(file.source)
 
-  return fileSourceCode
+  const updatedAnything = root
     .find(codeApi.CatchClause)
     .forEach(catchClausePath => {
       performValidations(codeApi, catchClausePath)
     })
-    .toSource();
+
+  return updatedAnything ? root.toSource() : null;
 }
 
 
