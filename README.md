@@ -65,8 +65,16 @@ yarn run jscodeshift \
 
 
 ## How to speed up templates creation
+You can use tools mentioned below to generate code that will drastically speed up your learning curve, or even allow you to create code modification scripts without learning anything.
 
-Use `@babel/parser` in [https://astexplorer.net](https://astexplorer.net) when working with the jscodeshift's [default parser](https://github.com/facebook/jscodeshift#usage-cli) (default: `babel`).
+[https://ts-ast-viewer.com/](https://ts-ast-viewer.com/)
+
+![ast explorer](docs/ts-ast-explorer.png)
+
+
+[https://astexplorer.net](https://astexplorer.net)
+
+> Use `@babel/parser` in [https://astexplorer.net](https://astexplorer.net) when working with the jscodeshift's [default parser](https://github.com/facebook/jscodeshift#usage-cli) (default: `babel`).
 
 ![ast explorer](docs/ast-explorer.png)
 
@@ -83,12 +91,20 @@ Use the [pre-configured VSCode launcher](.vscode/launch.json) to run tests and d
 
 ![debugger](docs/debugger.gif)
 
+## Read & learn more
+
+- https://github.com/sejoker/awesome-jscodeshift
+- https://github.com/rajasegar/awesome-codemods
+- https://www.raymondluong.com/blog/refactoring-javascript-with-codemods/
+- https://github.com/civicsource/codemod
+- https://github.com/shopify-graveyard/shopify-codemod
+
 ## Resources & Inspiration
 
+- https://astexplorer.net
 - https://github.com/facebook/jscodeshift/tree/master/sample
 - https://github.com/facebook/jscodeshift/blob/master/recipes/retain-first-comment.md
 - https://github.com/elliottsj/jscodeshift-typescript-example
-- https://astexplorer.net
 
 ## TypeScript all the way 🚀
 
