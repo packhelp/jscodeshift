@@ -1,11 +1,6 @@
 import {API, FileInfo} from 'jscodeshift';
 import {ASTPath, CatchClause, Collection, JSCodeshift, ThrowStatement} from "jscodeshift/src/core";
-
-function addCommentToNode(codeApi: JSCodeshift, node, text: string) {
-  const comment = codeApi.commentLine(text, true, false);
-  const comments = node.node.comments = node.node.comments || [];
-  comments.push(comment);
-}
+import {addCommentToNode} from "../utils/add-comment-to-node";
 
 function performValidations(codeApi: JSCodeshift, catchClausePath: ASTPath<CatchClause>) {
   const catchClauseSourceCode = codeApi(catchClausePath)
