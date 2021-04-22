@@ -1,5 +1,5 @@
 import {API, FileInfo, Options} from 'jscodeshift';
-import {ASTPath, JSCodeshift} from "jscodeshift/src/core";
+import {ASTPath, JSCodeshift, ObjectPattern, VariableDeclaration} from "jscodeshift/src/core";
 
 export default function someNewTransform(file: FileInfo, api: API, options: Options) {
   const jscodeshift: JSCodeshift = api.jscodeshift
@@ -17,6 +17,11 @@ export default function someNewTransform(file: FileInfo, api: API, options: Opti
         }
       }],
     })
-
+    .forEach((variableDeclaration: ASTPath<VariableDeclaration>) => {
+      jscodeshift(variableDeclaration)
+        // \___ This is how we tell jscodeshift to search within code block
+        //      instead of whole file :)
+        .find<ObjectPattern>(jscodeshift.ObjectPattern)
+    })
   return updatedAnything ? root.toSource() : null;
 }
