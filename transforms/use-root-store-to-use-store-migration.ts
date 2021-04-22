@@ -28,8 +28,16 @@ export default function someNewTransform(file: FileInfo, api: API, options: Opti
         }))
     })
     .replaceWith(
-      p => // <--- Shiet... I know how to search code,
-                  //      but how to make new one?
+      node => keys.map(key =>
+        jscodeshift.variableDeclaration.from({
+          kind: "const",
+          declarations: [
+            // Lets dig deeper! 🕵️‍
+            // But, if in trouble, https://grep.app to the rescue!
+            // Search "variableDeclaration.from(" in it
+          ]
+        }
+      ))
     )
 
   return updatedAnything ? root.toSource() : null;
