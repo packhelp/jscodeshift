@@ -1,10 +1,14 @@
 import {API, FileInfo, Options} from 'jscodeshift';
 import {ASTPath, JSCodeshift, ObjectPattern, VariableDeclaration} from "jscodeshift/src/core";
 
+const capitalizeFirstLetter = (text: string) => {
+  return text.charAt(0).toUpperCase() + text.slice(1)
+}
+
 export default function someNewTransform(file: FileInfo, api: API, options: Options) {
   const jscodeshift: JSCodeshift = api.jscodeshift
   const root = jscodeshift(file.source)
-  const keys: String[] = []
+  const keys = []
 
   const updatedAnything = root
     .find(jscodeshift.VariableDeclaration, {
@@ -30,15 +34,24 @@ export default function someNewTransform(file: FileInfo, api: API, options: Opti
     .replaceWith(
       node => keys.map(key =>
         jscodeshift.variableDeclaration.from({
-          kind: "const",
-          declarations: [
-            // Lets dig deeper! 🕵️‍
-            // But, if in trouble, https://grep.app to the rescue!
-            // Search "variableDeclaration.from(" in it
-          ]
-        }
-      ))
-    )
+            kind: "const",
+            declarations: [
+              jscodeshift.variableDeclarator.from({
+                id: jscodeshift.identifier(key),
+                init: jscodeshift.callExpression.from({
+                  callee: jscodeshift.identifier('useStore'),
+                  arguments: [
+                    jscodeshift.memberExpression(
+                      jscodeshift.identifier('Stores'),
+                      jscodeshift.identifier(capitalizeFirstLetter(key))
+                    )
+                  ]
+                })
+              })
+            ]
+          }
+        ))
+    ).toSource()
 
   return updatedAnything ? root.toSource() : null;
 }
