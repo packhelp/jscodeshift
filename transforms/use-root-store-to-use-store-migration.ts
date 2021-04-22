@@ -4,6 +4,7 @@ import {ASTPath, JSCodeshift, ObjectPattern, VariableDeclaration} from "jscodesh
 export default function someNewTransform(file: FileInfo, api: API, options: Options) {
   const jscodeshift: JSCodeshift = api.jscodeshift
   const root = jscodeshift(file.source)
+  const keys: String[] = []
 
   const updatedAnything = root
     .find(jscodeshift.VariableDeclaration, {
@@ -19,9 +20,12 @@ export default function someNewTransform(file: FileInfo, api: API, options: Opti
     })
     .forEach((variableDeclaration: ASTPath<VariableDeclaration>) => {
       jscodeshift(variableDeclaration)
-        // \___ This is how we tell jscodeshift to search within code block
-        //      instead of whole file :)
         .find<ObjectPattern>(jscodeshift.ObjectPattern)
+        .at(0)
+        .forEach((objectPattern: ASTPath<ObjectPattern>) => objectPattern.node.properties.map((property: any) => {
+          keys.push(property.key.name)
+          return property
+        }))
     })
   return updatedAnything ? root.toSource() : null;
 }
