@@ -16,5 +16,11 @@ export default function someNewTransform(file: FileInfo, api: API, options: Opti
     .filter((node) => isImportingFromCreator(node.value.value))
     .forEach((path) => nodesToUpdate.add(path));
 
+  nodesToUpdate.forEach((node) => {
+    console.log(`⛔️ Found forbidden import!`)
+    console.log(`   File: ${file.path}`)
+    console.log(`   Import path: ${node.value.value}`)
+  });
+
   return updatedAnything ? root.toSource() : null;
 }
