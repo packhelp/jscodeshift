@@ -6,9 +6,9 @@ export default function someNewTransform(file: FileInfo, api: API, options: Opti
   const root = jscodeshift(file.source)
 
   const updatedAnything = root
-    .find(jscodeshift.CatchClause)
-  //                     \___ sooo, how should i know how things are named? :<
-  //                          https://astexplorer.net to the rescue!
+    .find(jscodeshift.VariableDeclaration)
+  //                  \_____ Ok, ok, but how to find that contains some specific
+  //                         stuff inside?
 
   return updatedAnything ? root.toSource() : null;
 }
