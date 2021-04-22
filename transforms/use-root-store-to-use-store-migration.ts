@@ -12,3 +12,10 @@ export default function someNewTransform(file: FileInfo, api: API, options: Opti
 
   return updatedAnything ? root.toSource() : null;
 }
+
+// Run transformation against code below in ASTExplorer:
+
+// const Button = () => {
+//   const { dielineService, authService, logger } = useRootStore()
+//   return <button></button>
+// }
