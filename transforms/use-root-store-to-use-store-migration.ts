@@ -27,5 +27,10 @@ export default function someNewTransform(file: FileInfo, api: API, options: Opti
           return property
         }))
     })
+    .replaceWith(
+      p => // <--- Shiet... I know how to search code,
+                  //      but how to make new one?
+    )
+
   return updatedAnything ? root.toSource() : null;
 }
