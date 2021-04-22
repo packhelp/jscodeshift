@@ -8,11 +8,13 @@ function isImportingFromCreator(path) {
 export default function someNewTransform(file: FileInfo, api: API, options: Options) {
   const jscodeshift: JSCodeshift = api.jscodeshift
   const root = jscodeshift(file.source)
+  const nodesToUpdate = new Set();
 
   const updatedAnything = root
     .find<ImportDeclaration>(jscodeshift.ImportDeclaration)
     .find<StringLiteral>(jscodeshift.StringLiteral)
     .filter((node) => isImportingFromCreator(node.value.value))
+    .forEach((path) => nodesToUpdate.add(path));
 
   return updatedAnything ? root.toSource() : null;
 }
