@@ -1,0 +1,2 @@
+try {} //Found catch! :)
+catch {}
