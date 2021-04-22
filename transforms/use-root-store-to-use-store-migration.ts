@@ -6,9 +6,17 @@ export default function someNewTransform(file: FileInfo, api: API, options: Opti
   const root = jscodeshift(file.source)
 
   const updatedAnything = root
-    .find(jscodeshift.VariableDeclaration)
-  //                  \_____ Ok, ok, but how to find code blocks that contain
-  //                         some specific stuff inside?
+    .find(jscodeshift.VariableDeclaration, {
+      declarations: [{
+        type: 'VariableDeclarator',
+        init: {
+          type: 'CallExpression',
+          callee: {
+            name: 'useRootStore'
+          }
+        }
+      }],
+    })
 
   return updatedAnything ? root.toSource() : null;
 }
