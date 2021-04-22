@@ -8,7 +8,7 @@ function isImportingFromCreator(path) {
 export default function someNewTransform(file: FileInfo, api: API, options: Options) {
   const jscodeshift: JSCodeshift = api.jscodeshift
   const root = jscodeshift(file.source)
-  const nodesToUpdate = new Set();
+  const nodesToUpdate = new Set<ASTPath<StringLiteral>>();
 
   const updatedAnything = root
     .find<ImportDeclaration>(jscodeshift.ImportDeclaration)
