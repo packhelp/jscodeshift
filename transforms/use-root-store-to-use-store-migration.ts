@@ -47,10 +47,10 @@ export default function someNewTransform(file: FileInfo, api: API, options: Opti
                     )
                   ]
                 })
-              })
-            ]
-          }
-        ))
+              })    // Alright!
+            ]       // Now, let's run "yarn test"
+          }         // And obviously let's check if it fails
+        ))          // if we remove "capitalizeFirstLetter"
     ).toSource()
 
   return updatedAnything ? root.toSource() : null;
