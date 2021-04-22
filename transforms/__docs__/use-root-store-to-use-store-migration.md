@@ -1,16 +1,18 @@
 ## `use-root-store-to-use-store-migration`
 
-Description of transform. (CHANGE THIS)
+Transforms useRootStore() to
 
 ### Example
 #### Before
 ```js
-EXAMPLE INPUT CODE (️CHANGE THIS)
+const { dielineService, authService, logger } = useRootStore()
 ```
 
 #### After
 ```js
-EXAMPLE OUTPUT CODE (️CHANGE THIS)
+const dielineService = useStore(Stores.DielineService);
+const authService = useStore(Stores.AuthService);
+const logger = useStore(Stores.Logger);
 ```
 
 #### How to run
