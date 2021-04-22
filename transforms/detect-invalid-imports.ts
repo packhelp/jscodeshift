@@ -1,11 +1,6 @@
 import {API, FileInfo, Options} from 'jscodeshift';
 import {ASTPath, JSCodeshift, CatchClause} from "jscodeshift/src/core";
-
-function addCommentToNode(codeApi: JSCodeshift, node, text: string) {
-  const comment = codeApi.commentLine(text, true, false);
-  const comments = node.node.comments = node.node.comments || [];
-  comments.push(comment);
-}
+import {addCommentToNode} from "../utils/add-comment-to-node";
 
 export default function someNewTransform(file: FileInfo, api: API, options: Options) {
   const jscodeshift: JSCodeshift = api.jscodeshift
