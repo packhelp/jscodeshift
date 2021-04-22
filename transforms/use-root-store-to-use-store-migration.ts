@@ -7,8 +7,8 @@ export default function someNewTransform(file: FileInfo, api: API, options: Opti
 
   const updatedAnything = root
     .find(jscodeshift.VariableDeclaration)
-  //                  \_____ Ok, ok, but how to find that contains some specific
-  //                         stuff inside?
+  //                  \_____ Ok, ok, but how to find code blocks that contain
+  //                         some specific stuff inside?
 
   return updatedAnything ? root.toSource() : null;
 }
