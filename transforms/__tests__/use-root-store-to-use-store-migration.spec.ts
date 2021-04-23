@@ -1,5 +1,5 @@
 import {defineInlineTest, defineTest} from 'jscodeshift/src/testUtils';
-import useRootStoreToUseStore from "../use-root-store-to-use-store";
+import useRootStoreToUseStore from "../use-root-store-to-use-store-migration";
 
 // IMPORTANT:
 // Nesting "it" in "describe" is forbidden
